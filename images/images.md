@@ -9,7 +9,7 @@ This document contains a collection of images used in the project.
 ![Jenkins Dashboard](../images/jenkins_dashboard.png)
 
 ## 📊 SonarQube Report
-![SonarQube Report](../images/sonar_report.png)
+![SonarQube Report](../images/sonarqube_report.png)
 
 ## 📦 Nexus Repository
 ![Nexus Repository](../images/nexus_repository.png)
