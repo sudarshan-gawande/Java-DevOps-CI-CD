@@ -5,11 +5,6 @@ Apache Tomcat is an open-source web server and servlet container used to deploy 
 
 ---
 
-## 🏛️ Architecture Diagram
-![Tomcat Architecture](../../images/tomcat_architecture.png)
-
----
-
 ## 📌 Prerequisites
 
 ### ✅ System Requirements

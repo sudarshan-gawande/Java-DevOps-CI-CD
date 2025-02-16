@@ -100,6 +100,9 @@ This Jenkins pipeline automates the complete CI/CD process for Java applications
 ### 📦 Nexus Repository UI
 ![Nexus Repository](images/nexus_repository.png)
 
+###  🐱 Tomcat WebApp Deployment
+![Tomcat Deployment](images/tomcat_app_deploy.png)
+
 ---
 
 ## 📄 Additional Documentation
