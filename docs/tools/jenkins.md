@@ -1,21 +1,22 @@
-# Jenkins Setup Guide for AWS with Slave Architecture 🚀
+# Jenkins Master-Slave Setup Guide 🚀
 
 ## 📋 Overview
-This document provides a step-by-step guide to setting up **Jenkins** on AWS with a **master-slave architecture** for efficient CI/CD automation. It includes required software installations, configurations, and best practices for a production-ready Jenkins environment.
+This document provides a step-by-step guide to setting up **Jenkins** with a **master-slave architecture** for efficient CI/CD automation. It includes required software installations, configurations, and best practices for a production-ready Jenkins environment.
 
 ---
 
-## 🏷️ Architecture Diagram
+## 🏛️ Architecture Diagram
 
-![Jenkins AWS Slave Architecture](../images/jenkins_architecture.png)
+![Jenkins Master-Slave Architecture](../../images/jenkins_architecture.png)
 
 ---
 
 ## 📌 Prerequisites
 
-### ✅ AWS Setup
-- **Jenkins Master**: An AWS EC2 instance (Ubuntu 22.04 recommended) to run Jenkins.
-- **Jenkins Slaves**: Separate AWS EC2 instances (Ubuntu 22.04 recommended) to execute builds.
+### ✅ System Requirements
+- **Jenkins Master**: An Ubuntu 22.04 machine to run Jenkins.
+- **Jenkins Slaves**: Separate Ubuntu 22.04 machines to execute builds.
+- **Instance Type**: Use **t3.medium** for Jenkins Slave nodes (t3.micro is not sufficient).
 - **Security Group Configuration**:
   - Allow **Port 8080** for Jenkins UI on the Master.
   - Allow **Port 22** for SSH access (for Jenkins Slave Nodes and remote administration).
@@ -23,7 +24,7 @@ This document provides a step-by-step guide to setting up **Jenkins** on AWS wit
 
 ### ✅ Required Software
 - **Jenkins (LTS Version) installed on Master**
-- **Java 17 (Amazon Corretto recommended) installed on both Master and Slaves**
+- **Java 8 & Java 17 installed on both Master and Slaves**
 - **Maven & Gradle** (for Java builds, installed on both Master and Slaves)
 - **Git** (for source code versioning, installed on both Master and Slaves)
 - **Docker** (optional, for containerized builds)
@@ -32,7 +33,7 @@ This document provides a step-by-step guide to setting up **Jenkins** on AWS wit
 
 ---
 
-## 🔧 Jenkins Master Setup (AWS EC2 Instance)
+## 🔧 Jenkins Master Setup
 
 ### **1⃣ Install Java 17**
 ```bash
@@ -76,31 +77,90 @@ sudo ufw enable
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-- Access **Jenkins UI**: `http://<EC2-PUBLIC-IP>:8080`
+- Access **Jenkins UI**: `http://<JENKINS_MASTER_IP>:8080`
 - Enter the **Admin Password**.
 - Install recommended plugins.
 
 ---
 
-## 🔧 Jenkins Slave Node Setup (AWS EC2 Instance) (Running on a Different Machine)
+## 🔧 Jenkins Slave Node Setup
 
-### **1. Install Java & Required Tools**
+### **1. Install Java 8 & Java 17**
 ```bash
 sudo apt update
-sudo apt install -y openjdk-17-jdk git maven gradle
+sudo apt install -y openjdk-8-jdk openjdk-17-jdk
 java -version
 ```
-### **2. Configure Jenkins Master to Recognize Slave**
+
+### **2. Configure Java Alternatives**
+To manage multiple Java versions, use `update-alternatives`:
+```bash
+sudo update-alternatives --config java
+```
+Select the appropriate version and verify:
+```bash
+java -version
+```
+
+### **3. Configure SSH Credentials for Slave Node**
+- In **Jenkins UI**:
+  - Go to **Manage Jenkins** → **Manage Credentials**.
+  - Select **Global credentials (unrestricted)**.
+  - Click **Add Credentials**.
+  - Choose **SSH Username with Private Key**.
+  - Enter **ID** (e.g., `Slave1Credential`).
+  - Enter **Username** (e.g., `ubuntu`).
+  - Select **Enter Directly** for Private Key.
+  - Paste the Private Key.
+  - Click **Add** to save credentials.
+
+![Jenkins Slave Credentials Setup](../../images/jenkins_slave_credentials.png)
+
+### **4. Configure Jenkins Master to Recognize Slave**
 - In **Jenkins UI**:
   - Go to **Manage Jenkins** → **Manage Nodes and Clouds**.
   - Click **New Node** → Enter Slave Name.
   - Choose **Permanent Agent**.
   - Set Remote Root Directory (`/home/ubuntu/slavenode1`).
   - Choose **Launch method: SSH**.
-  - Enter **Slave's Public IP & SSH credentials**.
+  - Enter **Slave's Public IP & Select SSH credentials** (created in Step 3).
   - Select **Manually Trusted Key Verification Strategy**.
   - Set Availability to **Keep this agent online as much as possible**.
   - Save & Test Connection.
+
+![Jenkins Slave Node Setup](../../images/jenkins_slave_setup1.png)
+
+![Jenkins Slave Node Setup](../../images/jenkins_slave_setup2.png)
+---
+
+## 🔥 Configuring GitHub Credentials for Jenkins
+
+### **1. Generate a GitHub Personal Access Token**
+- Go to [GitHub Personal Access Tokens](https://github.com/settings/tokens/new)
+- Select **Tokens (classic)**.
+- Provide a **Note** (e.g., `Git-Credential`).
+- Set **Expiration** (e.g., `30 days`).
+- Enable the following scopes:
+  - `repo` (Full control of private repositories)
+  - `workflow` (GitHub Actions access)
+  - `write:packages`, `read:packages`
+  - `admin:public_key`, `read:public_key`
+- Click **Generate Token** and copy the token.
+
+![GitHub Token Generation](../../images/github_token_generation.png)
+
+### **2. Add GitHub Token to Jenkins Credentials**
+- In **Jenkins UI**:
+  - Go to **Manage Jenkins** → **Manage Credentials**.
+  - Select **Global credentials (unrestricted)**.
+  - Click **Add Credentials**.
+  - Choose **Secret text**.
+  - Enter **ID** (e.g., `Git-Credential`).
+  - Paste the **GitHub Token** in the **Secret** field.
+  - Click **Create**.
+
+![Jenkins Git Credentials](../../images/jenkins_git_credentials.png)
+
 ---
 
 ## 🔥 Installing Required Plugins
@@ -114,6 +174,7 @@ wget http://updates.jenkins-ci.org/download/plugins/maven-plugin/latest/maven-pl
 Or install via Jenkins UI:
 - **Git Plugin**
 - **Pipeline Plugin**
+- **Pipeline: Stage View Plugin**
 - **SonarQube Scanner Plugin**
 - **Nexus Artifact Uploader**
 - **Docker Plugin** (if using Docker)
@@ -123,27 +184,26 @@ Or install via Jenkins UI:
 
 ## 🏁 Final Verification
 
-### ✅ **Jenkins Master (Running on a Separate Machine)**
-- Jenkins UI is accessible at `http://<EC2-PUBLIC-IP>:8080`
+### ✅ **Jenkins Master**
+- Jenkins UI is accessible at `http://<JENKINS_MASTER_IP>:8080`
 - Slave nodes are successfully connected.
 - Required plugins are installed.
 
-### ✅ **Jenkins Slave Nodes (Running on Separate EC2 Instances)**
+### ✅ **Jenkins Slave Nodes**
 - Slave agents are running.
 - Slave can execute build jobs.
 
-![Jenkins Dashboard](../images/jenkins_dashboard.png)
+![Jenkins Dashboard](../../images/jenkins_dashboard.png)
 
 ---
 
 ## 📄 Additional Documentation
 - **[Jenkins Official Docs](https://www.jenkins.io/doc/)**
-- **[AWS EC2 Setup Guide](https://docs.aws.amazon.com/ec2/)**
 - **[Jenkins with AWS CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/integrating-jenkins-with-codedeploy.html)**
 
 ---
 
-## 📧 Contact
+## 💎 Contact
 📧 **Email**: [sudarshangawande98@gmail.com](mailto:sudarshangawande98@gmail.com)  
 📎 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshangawande98)
 
