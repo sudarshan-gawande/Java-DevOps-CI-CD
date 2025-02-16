@@ -31,7 +31,7 @@ pipeline {
     
     parameters {
         string(name: 'GIT_URL', description: 'Git Repository URL')
-        string(name: 'GIT_BRANCH', description: 'Branch to build')
+        string(name: 'GIT_BRANCH', defaultValue: 'main', description: 'Branch to build')
         choice(name: 'VERSION_INCREMENT', choices: ['PATCH','MINOR','MAJOR'], description: 'Select the type of version increment')
     }
     
@@ -39,32 +39,28 @@ pipeline {
         // SonarQube Configuration
         SONARQUBE_ENV = 'SonarQube'
         SONAR_SCANNER_HOME = '/opt/sonar-scanner'
-        SONAR_HOST_URL = 'http://13.235.13.237:9000'
+        SONAR_HOST_URL = 'http://51.20.144.148:9000'
         
         // Infrastructure Configuration
-        TOMCAT_URL = "http://13.234.76.181:8080"
+        TOMCAT_URL = "http://13.61.190.76:8080"
         NEXUS_URL = "13.234.34.176:8081"
         
-        // Tools Paths
-        GRADLE_HOME = "/home/ec2-user/gradle-8.12.1/bin/gradle"
-        MAVEN_HOME = "/usr/share/maven"
-        
         // Dynamic Path Configuration
-        PATH = "${MAVEN_HOME}/bin:${GRADLE_HOME}/bin:${SONAR_SCANNER_HOME}/bin:${PATH}"
+        PATH = "${SONAR_SCANNER_HOME}/bin:${PATH}"
         
         // Store Credential IDs as Variables
         NEXUS_CREDENTIAL_ID = "Nexus-Credentials"
         TOMCAT_CREDENTIAL_ID = "Tomcat-Credential"
-        GIT_CREDENTIAL_ID = "git-credentials1"
+        GIT_CREDENTIAL_ID = "Git-Credential"
         
         // Nexus Repository
         NEXUS_REPOSITORY = "PROJECT1_SNAPSHOT"
         
         // JDK Installation Paths (Update according to your slave setup)
-        JAVA_8_HOME = '/home/ubuntu/openlogic-openjdk-8u442-b06-linux-x64'
-        JAVA_11_HOME = '/usr/lib/jvm/java-11-amazon-corretto'
-        JAVA_17_HOME = '/usr/lib/jvm/java-17-amazon-corretto'
-        JAVA_21_HOME = '/usr/lib/jvm/java-21-openjdk'
+        JAVA_8_HOME = '/usr/lib/jvm/java-8-openjdk-amd64'
+        JAVA_11_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
+        JAVA_17_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
+        JAVA_21_HOME = '/usr/lib/jvm/java-21-openjdk-amd64'
         
         // Dynamic Git Configuration
         GIT_USER_EMAIL = 'sudarshangawande98@gmail.com'

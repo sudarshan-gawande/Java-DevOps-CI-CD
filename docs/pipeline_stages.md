@@ -145,8 +145,6 @@ stage('Setup Environment') {
 
 ## 🔥 Configuring GitHub Credentials for Jenkins
 
-**Note:** This step is required only if you are pushing an updated version to Git (Versioning).
-
 ### **1. Generate a GitHub Personal Access Token**
 - Go to [GitHub Personal Access Tokens](https://github.com/settings/tokens/new)
 - Select **Tokens (classic)**.
