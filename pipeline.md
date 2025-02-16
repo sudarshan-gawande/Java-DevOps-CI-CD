@@ -10,6 +10,15 @@ This document contains the **full Jenkins pipeline code** used to automate the C
 3. **Modify the parameters** (e.g., Git repository, credentials, tool versions) as per your environment.
 4. **Trigger the pipeline manually** or configure webhooks for automation.
 
+### 🔹 Important Configuration Notes:
+- **Git Credentials**: If your pipeline involves pushing updates (e.g., version increments), you need to configure GitHub credentials using a **Personal Access Token**. Refer to **pipeline_stages.md** for detailed steps.
+- **Mail Notifications**: Ensure SMTP settings are configured in Jenkins if email notifications are enabled in your pipeline.
+- **Artifact Storage**: If using **Nexus** or any artifact repository, verify repository URLs and authentication settings.
+- **SonarQube Analysis**: SonarQube setup is required for code quality analysis.
+
+For a detailed breakdown of each pipeline stage and its required configurations, check **pipeline_stages.md**.
+
+
 ---
 
 ## 🚀 Full Pipeline Code

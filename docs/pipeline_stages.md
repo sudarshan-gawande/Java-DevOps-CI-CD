@@ -142,6 +142,40 @@ stage('Setup Environment') {
 ```
 
 ### 4️⃣ **Version Management**: Updates project version semantically
+
+## 🔥 Configuring GitHub Credentials for Jenkins
+
+**Note:** This step is required only if you are pushing an updated version to Git (Versioning).
+
+### **1. Generate a GitHub Personal Access Token**
+- Go to [GitHub Personal Access Tokens](https://github.com/settings/tokens/new)
+- Select **Tokens (classic)**.
+- Provide a **Note** (e.g., `Git-Credential`).
+- Set **Expiration** (e.g., `30 days`).
+- Enable the following scopes:
+  - `repo` (Full control of private repositories)
+  - `workflow` (GitHub Actions access)
+  - `write:packages`, `read:packages`
+  - `admin:public_key`, `read:public_key`
+- Click **Generate Token** and copy the token.
+
+![GitHub Token Generation](../images/github_token_generation.png)
+
+### **2. Add GitHub Token to Jenkins Credentials**
+- In **Jenkins UI**:
+  - Go to **Manage Jenkins** → **Manage Credentials**.
+  - Select **Global credentials (unrestricted)**.
+  - Click **Add Credentials**.
+  - Choose **Secret text**.
+  - Enter **ID** (e.g., `Git-Credential`).
+  - Paste the **GitHub Token** in the **Secret** field.
+  - Click **Create**.
+
+![Jenkins Git Credentials](../images/jenkins_git_credentials.png)
+
+---
+### **3. Git Commit and Push Version Update**
+This step ensures that versioning is managed correctly when pushing to the repository.
 ```groovy
 stage('Version Management') {
     steps {

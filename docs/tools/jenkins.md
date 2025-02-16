@@ -42,9 +42,9 @@ sudo apt install -y openjdk-17-jdk
 java -version
 ```
 
-### **2⃣ Install Jenkins (Updated for Ubuntu 22.04)**
+### **2⃣ Install Jenkins (for Ubuntu 22.04)**
 ```bash
-# Add the Jenkins repository key using the new method
+# Add the Jenkins repository key using
 sudo mkdir -p /usr/share/keyrings
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
@@ -131,36 +131,6 @@ java -version
 ![Jenkins Slave Node Setup](../../images/jenkins_slave_setup1.png)
 
 ![Jenkins Slave Node Setup](../../images/jenkins_slave_setup2.png)
----
-
-## 🔥 Configuring GitHub Credentials for Jenkins
-
-### **1. Generate a GitHub Personal Access Token**
-- Go to [GitHub Personal Access Tokens](https://github.com/settings/tokens/new)
-- Select **Tokens (classic)**.
-- Provide a **Note** (e.g., `Git-Credential`).
-- Set **Expiration** (e.g., `30 days`).
-- Enable the following scopes:
-  - `repo` (Full control of private repositories)
-  - `workflow` (GitHub Actions access)
-  - `write:packages`, `read:packages`
-  - `admin:public_key`, `read:public_key`
-- Click **Generate Token** and copy the token.
-
-![GitHub Token Generation](../../images/github_token_generation.png)
-
-### **2. Add GitHub Token to Jenkins Credentials**
-- In **Jenkins UI**:
-  - Go to **Manage Jenkins** → **Manage Credentials**.
-  - Select **Global credentials (unrestricted)**.
-  - Click **Add Credentials**.
-  - Choose **Secret text**.
-  - Enter **ID** (e.g., `Git-Credential`).
-  - Paste the **GitHub Token** in the **Secret** field.
-  - Click **Create**.
-
-![Jenkins Git Credentials](../../images/jenkins_git_credentials.png)
-
 ---
 
 ## 🔥 Installing Required Plugins
