@@ -544,9 +544,11 @@ The pipeline consists of multiple stages:
 
 ---
 
-## 📧 Contact
-📧 **Email**: [sudarshangawande7@gmail.com](mailto:sudarshangawande7@gmail.com)  
-🔗 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshangawande98)
+## 📧 Contact  
+📧 **Email**: [sudarshangawande98@gmail.com](mailto:sudarshangawande98@gmail.com)  
+🔗 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshan-gawande)  
+🌐 **Portfolio**: [sudarshangawande.com](https://sudarshangawande.com)  
+💼 **LinkedIn**: [Sudarshan Gawande](https://www.linkedin.com/in/sudarshan-gawande/)  
 
 ---
 

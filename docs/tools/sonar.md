@@ -214,13 +214,15 @@ sonar-scanner --version
 
 ## 📄 Additional Documentation
 - **[SonarQube Official Docs](https://docs.sonarqube.org/latest/)**
-- **[Jenkins Integration with SonarQube](https://www.jenkins.io/doc/book/quality/sonarqube/)**
+- **[Jenkins Integration with SonarQube](https://docs.sonarsource.com/sonarqube-server/9.8/analyzing-source-code/ci-integration/jenkins-integration/)**
 
 ---
 
-## 💎 Contact
+## 📧 Contact  
 📧 **Email**: [sudarshangawande98@gmail.com](mailto:sudarshangawande98@gmail.com)  
-📎 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshangawande98)
+🔗 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshan-gawande)  
+🌐 **Portfolio**: [sudarshangawande.com](https://sudarshangawande.com)  
+💼 **LinkedIn**: [Sudarshan Gawande](https://www.linkedin.com/in/sudarshan-gawande/)  
 
 ---
 

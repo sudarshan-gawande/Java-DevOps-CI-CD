@@ -29,4 +29,4 @@ SOFTWARE.
 ## 📌 Attribution
 This project is maintained by **Sudarshan Gawande**.
 
-For more information, visit [GitHub Profile](https://github.com/sudarshangawande98).
+For more information, visit [GitHub Profile](https://github.com/sudarshan-gawande).

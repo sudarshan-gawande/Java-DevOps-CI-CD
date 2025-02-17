@@ -13,3 +13,6 @@ This document contains a collection of images used in the project.
 
 ## 📦 Nexus Repository
 ![Nexus Repository](../images/nexus_repository.png)
+
+## 🐱 Tomcat Deployment
+![Tomcat Deployment](../images/tomcat_app_deploy.png)
