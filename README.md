@@ -36,8 +36,9 @@ This Jenkins pipeline automates the complete CI/CD process for Java applications
         |-- setup.md            # Detailed setup instructions
         |-- tools/
             |-- jenkins.md      # Jenkins setup
-            |-- sonar.md        # SonarQube setup
+            |-- mail.md         # Mail setup
             |-- nexus.md        # Nexus setup
+            |-- sonar.md        # SonarQube setup
             |-- tomcat.md       # Tomcat setup
         |-- pipeline_stages.md  # Combined working of all stages
     |-- pipeline.md             # Full pipeline code
@@ -113,9 +114,11 @@ This Jenkins pipeline automates the complete CI/CD process for Java applications
 
 ---
 
-## 📧 Contact
+## 📧 Contact  
 📧 **Email**: [sudarshangawande98@gmail.com](mailto:sudarshangawande98@gmail.com)  
-🔗 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshangawande98)
+🔗 **GitHub**: [Sudarshan Gawande](https://github.com/sudarshan-gawande)  
+🌐 **Portfolio**: [sudarshangawande.com](https://sudarshangawande.com)  
+💼 **LinkedIn**: [Sudarshan Gawande](https://www.linkedin.com/in/sudarshan-gawande/)  
 
 ---
 
