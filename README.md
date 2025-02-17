@@ -30,17 +30,17 @@ This Jenkins pipeline automates the complete CI/CD process for Java applications
 
 ```
 |-- Java-DevOps-CI-CD/
-    |-- README.md  # Main Documentation
-    |-- images/  # Directory for pipeline images/screenshots
-    |-- docs/  # Documentation directory
-        |-- setup.md  # Detailed setup instructions
+    |-- README.md               # Main Documentation
+    |-- images/                 # Directory for pipeline images/screenshots
+    |-- docs/                   # Documentation directory
+        |-- setup.md            # Detailed setup instructions
         |-- tools/
-            |-- jenkins.md  # Jenkins setup
-            |-- sonar.md  # SonarQube setup
-            |-- nexus.md  # Nexus setup
-            |-- tomcat.md  # Tomcat setup
+            |-- jenkins.md      # Jenkins setup
+            |-- sonar.md        # SonarQube setup
+            |-- nexus.md        # Nexus setup
+            |-- tomcat.md       # Tomcat setup
         |-- pipeline_stages.md  # Combined working of all stages
-    |-- pipeline.md  # Full pipeline code
+    |-- pipeline.md             # Full pipeline code
     |-- LICENSE
 ```
 
