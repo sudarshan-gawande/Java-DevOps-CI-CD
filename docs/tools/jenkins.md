@@ -65,7 +65,7 @@ sudo systemctl enable jenkins
 sudo systemctl status jenkins
 ```
 
-### **3⃣ Setup Firewall Rules**
+### **3⃣ Setup Firewall Rules (If Required)**
 ```bash
 sudo ufw allow 8080
 sudo ufw allow OpenSSH
@@ -109,9 +109,10 @@ java -version
   - Click **Add Credentials**.
   - Choose **SSH Username with Private Key**.
   - Enter **ID** (e.g., `Slave1Credential`).
+  - Enter **Description** (e.g., `Slave1Credential`).
   - Enter **Username** (e.g., `ubuntu`).
   - Select **Enter Directly** for Private Key.
-  - Paste the Private Key.
+  - Paste the contents of the .pem file (e.g., jenkins-slave.pem).
   - Click **Add** to save credentials.
 
 ![Jenkins Slave Credentials Setup](../../images/jenkins_slave_credentials.png)
