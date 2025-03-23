@@ -109,7 +109,7 @@ This Jenkins pipeline automates the complete CI/CD process for Java applications
 ## 📄 Additional Documentation
 - **[Pipeline Full Code](pipeline.md)**
 - **[Setup Instructions](docs/setup.md)**
-- **[Images & Screenshots](images/)**
+- **[Images & Screenshots](images/images.md)**
 - **[Pipeline Stages Combined](docs/pipeline_stages.md)**
 
 ---
